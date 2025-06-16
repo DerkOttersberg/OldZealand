@@ -1,0 +1,19 @@
+state={
+	id=1018
+	name="Terneuzen"
+	history={
+		victory_points = { 480 5 }
+		owner = ZEE
+		add_core_of = ZEE
+	}
+
+	provinces={
+		480
+	}
+
+	manpower=25600
+	buildings_max_level_factor=3.000
+	state_category=town
+}
+
+local_supplies=14.0 

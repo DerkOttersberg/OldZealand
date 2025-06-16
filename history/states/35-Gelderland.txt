@@ -1,0 +1,33 @@
+state={
+	id=35
+	name="STATE_35"
+
+	history={
+		owner = BRE
+		add_core_of = BRE
+		buildings = {
+			infrastructure = 3
+			industrial_complex = 5
+
+		}
+		victory_points = {
+			3262 15
+		}
+		victory_points = {
+			6496 15 
+		}
+		victory_points = {
+			11562 15 
+		}
+
+	}
+
+	provinces={
+		  3262 6496 6500 11456 11562 
+	}
+	manpower=1449000
+	buildings_max_level_factor=1.000
+	state_category=city
+
+	local_supplies=0.0 
+}

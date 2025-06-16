@@ -1,0 +1,7 @@
+﻿ZEE_INF_01 = {
+	name = "Infantry Divisions"
+	for_countries = { ZEE }
+	can_use = { always = yes }
+	division_types = { "infantry" }
+	fallback_name = "%dth Infantry Division"
+}

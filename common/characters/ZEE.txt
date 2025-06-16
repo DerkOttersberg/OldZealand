@@ -1,0 +1,174 @@
+characters={
+
+	ZEE_fritz_todt={
+		name= ZEE_fritz_todt
+		portraits={
+			army={
+				small="GFX_idea_todt"
+			}
+			
+		}
+		advisor={
+			slot = political_advisor
+			idea_token = ZEE_fritz_todt
+            cost = 300
+			traits = {
+				economic_reformer
+			}
+			ai_will_do = {
+				factor = 0.500
+			}
+		}
+	}
+
+		ZEE_antonie_pannekoek={
+		advisor={
+			slot = political_advisor
+			idea_token = ZEE_antonie_pannekoek
+			allowed  = {
+					OR = {
+						original_tag  = ZEE
+						original_tag = SWE
+						original_tag = CHL
+					}
+					has_dlc = "Man the Guns"
+				}
+				traits  = {
+					council_communist 
+				}
+		}
+		name=ZEE_antonie_pannekoek
+		portraits={
+			army={
+				small="GFX_idea_HOL_antonie_pannekoek"
+			}
+		}
+	}
+
+	ZEE_jacob_adriaan_de_wilde={
+		advisor={
+			slot = political_advisor
+			idea_token = ZEE_jacob_adriaan_de_wilde
+			allowed  = {
+					original_tag  = ZEE
+				}
+				available  = {
+					or  = {
+						has_government  = democratic 
+						has_government  = neutrality 
+					}
+				}
+				traits  = {
+					genial_anti_revolutionary 
+				}
+		}
+		name=ZEE_jacob_adriaan_de_wilde
+		portraits={
+			army={
+				small="GFX_idea_HOL_jacob_adriaan_de_wilde"
+			}
+		}
+	}
+
+	ZEE_adriaan_dijxhoorn={
+		advisor={
+			slot = political_advisor
+			idea_token = ZEE_adriaan_dijxhoorn
+			allowed  = {
+					original_tag  = ZEE
+				}
+				available  = {
+					or  = {
+						has_government  = democratic 
+						has_government  = neutrality 
+					}
+				}
+				traits  = {
+					war_industrialist 
+				}
+		}
+
+		name=ZEE_adriaan_dijxhoorn
+		portraits={
+			army={
+				small="GFX_idea_HOL_adriaan_dijxhoorn"
+			}
+		}
+	}
+
+
+
+	ZEE_jan_goudriaan={
+		advisor={
+			slot = political_advisor
+			idea_token = ZEE_jan_goudriaan
+			allowed  = {
+					original_tag  = ZEE
+				}
+				traits  = {
+					captain_of_industry 
+				}
+		}
+		name=ZEE_jan_goudriaan
+		portraits={
+			army={
+				small="GFX_idea_HOL_jan_goudriaan"
+			}
+		}
+	}
+
+
+	ZEE_adrianus_rudolphus_van_den_bent={
+		advisor={
+			slot = high_command
+			idea_token = ZEE_adrianus_rudolphus_van_den_bent
+			ledger = army
+				allowed = {
+					original_tag = ZEE
+				}
+				traits = {
+					army_infantry_2
+				}
+				cost = 100
+				ai_will_do = {
+					factor = 1.000
+				}
+		}
+		name=ZEE_adrianus_rudolphus_van_den_bent
+		portraits={
+			army={
+				small="GFX_idea_HOL_adrianus_rudolphus_van_den_bent"
+			}
+		}
+	}
+	ZEE_hendrik_van_oyen={
+		advisor={
+			slot = air_chief
+			idea_token = ZEE_hendrik_van_oyen
+			allowed = {
+					original_tag = ZEE
+				}
+				traits = {
+					air_chief_reform_2
+				}
+				cost = 100
+				ai_will_do = {
+					factor = 1.000
+				}
+		}
+		name=ZEE_hendrik_van_oyen
+		portraits={
+			army={
+				small="GFX_idea_HOL_hendrik_van_oyen"
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+}

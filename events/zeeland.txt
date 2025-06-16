@@ -1,0 +1,72 @@
+add_namespace = zeeland
+
+
+country_event = {
+	id = zeeland.1
+	title = zeeland.1.t
+	desc = zeeland.1.d
+	picture = GFX_report_event_german_speech
+	is_triggered_only = yes
+	option = {
+		name = zeeland.1.a
+		add_political_power = 75
+		add_war_support = 0.1
+		add_stability = 0.05
+	}
+}
+country_event = {
+	id = zeeland.2
+	title = zeeland.2.t
+	desc = zeeland.2.d
+	picture = GFX_report_event_german_speech
+	is_triggered_only = yes
+	option = {
+		name = zeeland.2.a
+		add_war_support = 0.05
+	}
+}
+
+country_event = {
+    id = zeeland.3
+    title = zeeland.3.t
+    desc = zeeland.3.d
+    picture = GFX_report_event_generic_political
+
+    is_triggered_only = yes
+
+    option = {
+        name = zeeland.3.a # Keep Non-Aligned
+        add_political_power = 50
+        set_politics = {
+            ruling_party = neutrality
+            elections_allowed = no
+        }
+        add_stability = 0.05
+        add_ideas = king_abel_tasman_idea
+		complete_national_focus = ZEE_myth_of_tasman
+    }
+
+    option = {
+        name = zeeland.3.b # Go Democratic
+        add_political_power = 50
+        set_politics = {
+            ruling_party = democratic
+            elections_allowed = yes
+        }
+        add_stability = 0.05
+        add_ideas = staten_generaal_idea
+	    complete_national_focus = ZEE_democratic_focus
+    }
+
+    option = {
+        name = zeeland.3.c # Go Communist
+        add_political_power = 50
+        set_politics = {
+            ruling_party = communism
+            elections_allowed = no
+        }
+        add_stability = 0.05
+        add_ideas = revolutionary_zeeland_idea
+	    complete_national_focus = ZEE_communist
+    }
+}

@@ -1,0 +1,68 @@
+﻿division_template = {
+	name = "State-Militia"
+
+	division_names_group = HOL_ARM_01
+
+	regiments = {
+		infantry = { x = 0 y = 0 }
+		infantry = { x = 0 y = 1 }
+		infantry = { x = 0 y = 2 }
+		infantry = { x = 0 y = 3 }
+		infantry = { x = 1 y = 0 }
+		infantry = { x = 1 y = 1 }
+		infantry = { x = 1 y = 2 }
+		infantry = { x = 1 y = 3 }	
+		infantry = { x = 2 y = 0 }
+		infantry = { x = 2 y = 1 }
+		infantry = { x = 2 y = 2 }
+		infantry = { x = 2 y = 3 }	
+	}
+	priority = 2
+}
+
+units = {
+	division = {
+		name = "State Militia"
+		location = 9335
+		division_template = "State-Militia"
+		start_experience_factor = 0.4
+	}
+division = {
+		name = "State Militia"
+		location = 9335
+		division_template = "State-Militia"
+		start_experience_factor = 0.4
+	}
+division = {
+		name = "State Militia"
+		location = 9335
+		division_template = "State-Militia"
+		start_experience_factor = 0.4
+	}
+division = {
+		name = "State Militia"
+		location = 9335
+		division_template = "State-Militia"
+		start_experience_factor = 0.4
+	}
+division = {
+		name = "State Militia"
+		location = 9335
+		division_template = "State-Militia"
+		start_experience_factor = 0.3
+	}
+
+}
+
+### Starting Equipment ###
+instant_effect = {
+	add_equipment_production = {
+		equipment = {
+			type = infantry_equipment_0
+			creator = "HOL"
+		}
+		requested_factories = 1
+		progress = 0.28
+		efficiency = 100
+	}
+}

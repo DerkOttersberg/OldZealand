@@ -1,0 +1,1981 @@
+focus_tree = {
+	id = zeeland
+	continuous_focus_position = { x = -40 y = 1050 } 
+	country = {
+		factor = 0
+		modifier = {
+			add = 10
+			tag = ZEE
+		}
+	}
+	#Our nation
+	focus = {
+		id = ZEE_our_nation
+		icon = GFX_focus_hol_united_netherlands
+		x = 38
+		y = 0
+		cost = 1
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		ai_will_do = { factor = 1 }
+		completion_reward = {
+
+			
+			country_event = {
+                id = zeeland.1
+                days = 1 
+            }
+			
+		}
+	}
+
+
+
+
+
+#Idoology 
+# non aligned
+focus = {
+    id = ZEE_myth_of_tasman
+    icon = GFX_goal_generic_monarchy
+	relative_position_id = ZEE_our_nation
+    x = -8
+    y = 1
+    cost = 4
+    completion_reward = {
+        add_political_power = 50
+        add_stability = 0.05
+    }
+    available = {
+        always = no
+    }
+}
+
+
+focus = {
+    id = ZEE_communist
+    icon = GFX_goal_generic_monarchy
+		mutually_exclusive = { focus = ZEE_myth_of_tasman }
+	relative_position_id = ZEE_our_nation
+    x = -11
+    y = 1
+    cost = 4
+    available = {
+        always = no
+    }
+}
+
+focus = {
+    id = ZEE_democratic_focus
+    icon = GFX_goal_generic_monarchy
+		mutually_exclusive = { focus = ZEE_communist }
+	relative_position_id = ZEE_our_nation
+    x = -14
+    y = 1
+    cost = 4
+    available = {
+        always = no
+    }
+}
+
+
+
+
+focus = {
+    id = ZEE_cult_of_explorer
+    icon = GFX_goal_generic_cult
+	relative_position_id = ZEE_myth_of_tasman
+    x = 0
+    y = 1
+    cost = 4
+    prerequisite = { focus = ZEE_myth_of_tasman }
+    completion_reward = {
+        add_political_power = 50
+
+    }
+}
+
+focus = {
+    id = ZEE_crown_the_king
+    icon = GFX_goal_generic_king
+	relative_position_id = ZEE_cult_of_explorer
+    x = 0
+    y = 1
+    cost = 4
+    prerequisite = { focus = ZEE_cult_of_explorer }
+    completion_reward = {
+        set_politics = {
+            ruling_party = neutrality
+            elections_allowed = no
+        }
+        add_stability = 0.10
+        add_war_support = 0.05
+        add_ideas = king_abel_tasman_idea
+        add_country_leader_trait = divine_right
+    }
+}
+
+focus = {
+    id = ZEE_marshal_the_seas
+    icon = GFX_goal_generic_navy_doctrine
+	relative_position_id = ZEE_crown_the_king
+    x = -1
+    y = 1
+    cost = 4
+    prerequisite = { focus = ZEE_crown_the_king }
+    completion_reward = {
+        navy_experience = 25
+        add_tech_bonus = {
+            bonus = 0.5
+            uses = 1
+            category = naval_doctrine
+        }
+        add_ideas = ZEE_maritime_push
+    }
+}
+
+focus = {
+    id = ZEE_right_to_explore
+    icon = GFX_goal_generic_naval_build_up
+	relative_position_id = ZEE_crown_the_king
+    x = 1
+    y = 1
+    cost = 4
+    prerequisite = { focus = ZEE_crown_the_king }
+    completion_reward = {
+        add_political_power = 100
+        add_ideas = ZEE_claim_oceania
+    }
+}
+
+
+
+
+#AIRFORCE
+
+	focus = {
+		id = ZEE_air_base_expansion
+		icon = GFX_goal_generic_air_production
+		prerequisite = { focus = ZEE_our_nation  }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		relative_position_id = 	ZEE_our_nation
+		x = 20
+
+		y = 1
+		cost = 4
+
+
+
+		complete_tooltip = {
+			random_state = {
+
+				add_building_construction = {
+					type = air_base
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 10 }
+				limit = {
+					free_building_slots = {
+						building = air_base
+						size > 1
+					}
+				}
+				add_building_construction = {
+					type = air_base
+					level = 4
+					instant_build = yes
+				}
+				set_state_flag = ZEE_air_base_expansion_1
+			}
+			#Add 2 Airbases in Warsaw
+			
+		}
+	}
+
+	focus = {
+		id = ZEE_fighter_modernisation
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = ZEE_air_base_expansion }
+		
+		x = 1
+		y = 1
+		relative_position_id = ZEE_air_base_expansion
+		cost = 4
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = POL_fighter_modernisation
+				bonus = 1.5
+				uses = 2
+				category = light_fighter
+			}
+			#1x50% research bonus to fighter models
+		}
+	}
+
+
+
+	focus = {
+		id = ZEE_air_innovations
+		icon = GFX_goal_generic_build_airforce
+		prerequisite = { focus = ZEE_air_base_expansion }
+		
+		x = -1
+		y = 1
+		relative_position_id = ZEE_air_base_expansion
+		cost = 4
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = POL_air_innovations
+				cost_reduction = 0.7
+				uses = 3
+				category = air_doctrine
+			}
+			#1x50% research bonus to Air Doctrine Research
+		}
+	}
+
+	focus = {
+		id = ZEE_paratroopers
+		icon = GFX_goal_generic_air_fighter2
+		prerequisite = { focus = ZEE_air_innovations focus = ZEE_fighter_modernisation }
+		
+		x = 2
+		y = 1
+		relative_position_id = ZEE_air_innovations
+		cost = 4
+
+		ai_will_do = {
+			factor = 10
+		}
+		
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+
+			add_tech_bonus = {
+				name = CAN_1st_canadian_parachute_battalion
+				bonus = 2.0
+				uses = 1
+				category = para_tech}
+
+			add_tech_bonus = {
+				name = POL_heavy_fighter_concept
+				bonus = 1.0
+				uses = 1				
+				category = cat_heavy_fighter
+			}
+			#1x 50% research bonus to Heavy Fighters
+		}
+	}
+
+	focus = {
+		id = aircraft_production_focusd
+		prerequisite = { focus = ZEE_paratroopers }
+		icon = GFX_goal_generic_air_production
+		x = 1
+		y = 1
+		relative_position_id = ZEE_paratroopers
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+
+		available_if_capitulated = yes
+		search_filters = {FOCUS_FILTER_INDUSTRY}
+		completion_reward = {
+			add_ideas = british_fighter_discount
+		}
+	}
+
+
+
+	focus = {
+		id = ZEE_naval_bomber_experiments
+		icon = GFX_goal_generic_air_naval_bomber
+		prerequisite = { focus = ZEE_air_innovations }
+		
+		x = 0
+		y = 1
+		relative_position_id = ZEE_air_innovations
+		cost = 4
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = POL_naval_bomber_experiments
+				bonus = 1.0
+				uses = 1				
+				category = naval_bomber
+			}
+			#1x50% research bonus to NAV
+		}
+	}
+
+	focus = {
+		id = ZEE_medium_bomber_focus
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = ZEE_naval_bomber_experiments }
+
+		
+		x = -1
+		y = 1
+		relative_position_id = ZEE_naval_bomber_experiments
+		cost = 4
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = POL_medium_bomber_focus
+				bonus = 1.0
+				uses = 1				
+				category = tactical_bomber
+			}
+			#1 x 50% research bonus to Tactical Bomber models
+		}
+	}
+
+
+
+	focus = {
+		id = ZEE_air_modernisations_programme
+		icon = GFX_goal_generic_air_doctrine
+		prerequisite = { focus = ZEE_naval_bomber_experiments  }
+		
+		x = 1
+		y = 1
+		relative_position_id = ZEE_naval_bomber_experiments
+		cost = 4
+
+		ai_will_do = {
+			factor = 10
+		}
+
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = POL_air_modernisations_programme
+				cost_reduction = 0.9
+				uses = 1
+				category = air_doctrine
+			}
+			
+		}
+	}
+
+
+
+	focus = {
+		relative_position_id = ZEE_research_bonus
+		id = indoctrination_focusf
+		icon = GFX_goal_generic_propaganda
+		prerequisite = { focus = ZEE_research_bonus }
+
+		x = -2
+
+		y = 1
+
+		cost = 4
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
+		available_if_capitulated = yes
+
+		completion_reward = {
+			add_ideas = ZEE_indoctrination_focus
+
+		}
+	}
+
+	#war support
+	focus = {
+		id = ZEE_war_support
+		prerequisite = { focus = indoctrination_focusf }
+		relative_position_id = indoctrination_focusf
+		icon = GFX_focus_spa_the_war_of_vengeance
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+
+		completion_reward = {
+			add_war_support = 0.1
+			
+		}
+	}
+
+	focus = {
+		id = military_youthf
+		icon = GFX_goal_generic_more_territorial_claims
+		prerequisite = { focus = ZEE_war_support }
+		x = 0
+		y = 1
+		relative_position_id = ZEE_war_support
+		cost = 4
+	
+		search_filters = { FOCUS_FILTER_POLITICAL  }
+
+		available_if_capitulated = yes
+		
+		completion_reward = {
+			add_timed_idea = { idea = ZEE_equal_rights days = 560 }
+			792 = {
+			}
+		}
+	}
+
+	focus = {
+		prerequisite = { focus = indoctrination_focusf }
+		relative_position_id = indoctrination_focusf
+		id = ZEE_command_power
+		icon = GFX_focus_generic_manpower
+		x = -2
+		y = 1
+		cost = 3
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+		completion_reward = {
+			add_command_power = 100
+			
+			
+		}
+	}
+
+focus = {
+		id = ZEE_remove_division
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = ZEE_command_power}
+		x = 0
+		y = 1
+		relative_position_id = ZEE_command_power
+		cost = 4
+		completion_reward = {
+			remove_ideas = ZEE_internal_divisions
+			}
+		}
+
+
+
+
+
+
+
+	#stability
+	focus = {
+		prerequisite = { focus = military_youthf }
+		prerequisite = { focus = ZEE_remove_division }
+		relative_position_id = military_youthf
+		id = ZEE_stability
+		icon = GFX_focus_GRE_bedrock_of_balkan_stability
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_POLITICAL
+		}
+
+		completion_reward = {
+			add_stability = 0.1
+			
+			
+		}
+	}
+
+
+
+	#Industrial effort
+	focus = {
+		id = ZEE_research_bonus
+		icon = GFX_goal_continuous_research
+		relative_position_id = ZEE_our_nation
+		prerequisite = { focus = ZEE_our_nation  }
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = industrial_bonus
+				bonus = 1.0
+				uses = 2
+				category = industry
+			}
+
+		}
+	}
+
+	#civilian_factory
+	focus = {
+		id = ZEE_civilian_factory
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = ZEE_research_bonus  }
+		relative_position_id = ZEE_research_bonus
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = industrial_complex
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+			type = industrial_complex
+			level = 1
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+	#Militairy factory
+	focus = {
+		id = ZEE_militairy_factory
+		icon = GFX_goal_generic_construct_mil_factory
+		x = 2
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = ZEE_research_bonus  }
+		relative_position_id = ZEE_research_bonus
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = arms_factory
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+			type = arms_factory
+			level = 1
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+
+		focus = {
+		id = ZEE_autarky
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = ZEE_militairy_factory }
+		prerequisite = { focus = ZEE_civilian_factory }
+		x = 0
+		y = 1
+		relative_position_id = ZEE_militairy_factory
+		cost = 4
+		
+
+		
+		ai_will_do = {
+			factor = 9
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_autarky
+				bonus = 1.0
+				uses = 2
+				technology = excavation1
+				technology = excavation2
+				technology = excavation3
+				technology = excavation4
+				technology = excavation5
+			}
+			add_ideas = ZEE_autarky_idea
+		}
+	}
+
+
+focus = {
+		id = ZEE_remove_economy
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = ZEE_autarky }
+		x = 2
+		y = 1
+		relative_position_id = ZEE_autarky
+		cost = 4
+		completion_reward = {
+			remove_ideas = ZEE_outdated_industry
+			}
+		}
+	
+
+
+focus = {
+    id = increase_infrastructure_in_all_states
+    icon = GFX_goal_generic_infrastructure
+    x = 0
+    y = 1
+    cost = 4
+
+    # Prerequisite focus
+    prerequisite = { focus = ZEE_autarky }
+    relative_position_id = ZEE_autarky
+
+    # Conditions to make the focus available only after 1937
+
+  
+    
+
+    # AI consideration for the focus
+    ai_will_do = {
+        factor = 1
+    }
+
+    completion_reward = {
+        every_owned_state = {
+            add_building_construction = {
+                type = infrastructure
+                level = 1
+                instant_build = yes
+            }
+        }
+    }
+}
+
+
+
+		focus = {
+		id = ZEE_army_maneuvers
+		icon = GFX_goal_generic_army_doctrines
+		x = 9
+		y = 1
+		
+		relative_position_id = ZEE_our_nation
+		prerequisite = { focus = ZEE_our_nation  }
+		cost = 4
+
+		ai_will_do = {
+			factor = 9
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+
+		completion_reward = {
+			army_experience = 50
+					country_event = {
+                id = zeeland.2
+                days = 1 
+            }
+		}
+	}
+
+	focus = {
+		id = ZEE_army_war_college
+		icon = GFX_goal_generic_construct_military
+		prerequisite = { focus = ZEE_army_maneuvers }
+		x = -1
+		y = 1
+		relative_position_id = ZEE_army_maneuvers
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = ROM_army_war_college
+			custom_effect_tooltip = ZEE_war_college_tt
+
+		}
+	}
+
+	focus = {
+		id = ZEE_the_zb_53
+		icon = GFX_goal_generic_small_arms
+		prerequisite = { focus = ZEE_army_war_college }
+		prerequisite = { focus = ZEE_royal_guards_divisions }
+		x = 0
+		y = 1
+		relative_position_id = ZEE_army_war_college
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_the_zb_53
+				bonus = 1.0
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+
+	
+
+	focus = {
+		id = ZEE_artillery_modernization
+		icon = GFX_goal_generic_army_artillery2
+		prerequisite = { focus = ZEE_the_zb_53 }
+		x = 0
+		y = 1
+		relative_position_id = ZEE_the_zb_53
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_artillery_modernization
+				bonus = 1.0
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_modern_at_guns
+		icon = GFX_goal_generic_army_artillery
+		prerequisite = { focus = ZEE_artillery_modernization }
+
+		x = 0
+		y = 2
+		relative_position_id = ZEE_the_zb_53
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 5
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_modern_at_guns
+				bonus = 0.75
+				uses = 2
+				category = cat_anti_tank
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_royal_guards_divisions
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = ZEE_army_maneuvers }
+		x = 1
+		y = 1
+		relative_position_id = ZEE_army_maneuvers
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 9
+		}
+
+		available = {
+
+		}
+
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			custom_effect_tooltip = ROM_royal_guards_divisions_tt
+			hidden_effect = {
+				if = {
+					division_template = {
+						name = "Heavy Artillery Division"
+						priority = 2
+						division_names_group = ZEE_INF_01
+						regiments = {
+							infantry = { x = 0 y = 0 }
+							infantry = { x = 0 y = 1 }
+							infantry = { x = 0 y = 2 }
+		
+		    	   		 	infantry = { x = 1 y = 0 }
+							infantry = { x = 1 y = 1 }
+							infantry = { x = 1 y = 2 }
+		
+		    	   		 	infantry = { x = 2 y = 0 }
+							infantry = { x = 2 y = 1 }
+							infantry = { x = 2 y = 2 }
+
+							artillery_brigade = { x = 3 y = 0 }
+							artillery_brigade = { x = 3 y = 1 }
+							artillery_brigade = { x = 3 y = 2 }
+						}
+						support = {
+							artillery = { x = 0 y = 0 }
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_tech = tech_recon
+					}
+					random_owned_controlled_state = {
+						limit = { ROOT = { has_full_control_of_state = PREV } }
+						prioritize = { 46 }
+						create_unit = {
+							division = "name = \"Heavy Artillery Division\" division_template = \"Heavy Artillery Division\" start_experience_factor = 1.0" 
+							owner = ZEE
+						}
+					}
+				}
+				if = {
+					limit = {
+						has_tech = tech_recon
+					}
+					random_owned_controlled_state = {
+						limit = { ROOT = { has_full_control_of_state = PREV } }
+						prioritize = { 46 }
+						create_unit = {
+							division = "name = \"Heavy Artillery Division 2\" division_template = \"Heavy Artillery Division\" start_experience_factor = 1.0" 
+							owner = ZEE
+						}
+					}
+				}
+				
+				if = {
+					limit = {
+						has_tech = tech_recon
+					}
+					add_tech_bonus = {
+						name = ZEE_royal_guards_divisions
+						bonus = 1.0
+						uses = 1
+						category = infantry_weapons
+					}
+				}
+			}
+
+
+		}
+	}
+
+focus = {
+    id = equip_infantry_focus
+    icon = GFX_goal_generic_army_reform
+    prerequisite = { 
+        focus = ZEE_army_maneuvers
+    }
+    prerequisite = { 
+        focus = ZEE_army_maneuvers
+    }
+	relative_position_id = ZEE_army_maneuvers
+    x = -3
+    y = 1
+    cost = 4
+
+    search_filters = { FOCUS_FILTER_MILITARY }
+
+
+    completion_reward = {
+        add_equipment_to_stockpile = {
+            type = artillery_equipment
+            amount = 375
+        }
+
+    }
+}
+
+focus = {
+		id = ZEE_remove_unprepared
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = equip_infantry_focus focus = ZEE_army_war_college}
+		x = 0
+		y = 1
+		relative_position_id = equip_infantry_focus
+		cost = 4
+		completion_reward = {
+			remove_ideas = ZEE_militarily_unprepared
+			}
+		}
+	
+
+
+
+
+focus = {
+    id = wargoal_on_breda_focus
+    icon = GFX_goal_generic_war_goal
+    prerequisite = { 
+        focus = ZEE_royal_guards_divisions
+    }
+    prerequisite = { 
+        focus = ZEE_army_war_college
+    }
+	relative_position_id = ZEE_royal_guards_divisions
+    x = 0
+    y = 1
+    cost = 4
+
+    search_filters = { FOCUS_FILTER_MILITARY } # Adjust filter as needed
+
+
+    completion_reward = {
+        create_wargoal = {
+    type = annex_everything
+    target = BRE
+		}
+    }
+}
+	
+	focus = {
+		id = construct_civs_breda
+		icon = GFX_goal_generic_construct_civ_factory
+		dynamic = yes
+		prerequisite = { focus = wargoal_on_breda_focus }
+		x = 0
+		y = 1
+		relative_position_id = wargoal_on_breda_focus
+		cost = 3
+		ai_will_do = {
+			factor = 9
+		}
+available = {
+    owns_state = 35  # Example: Also check if you own state 35
+}
+		available_if_capitulated = no
+
+		complete_tooltip = {
+			every_state = {
+				limit = { has_state_flag = GER_industrial_effort_2IC }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+					instant_build = yes
+				}
+			}			
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GER_industrial_effort_2IC
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = GER_industrial_effort_2IC
+			}
+			
+		}
+	}
+
+focus = {
+    id = gain_core_on_state_35
+    icon = GFX_goal_generic_core_state  # Replace with the appropriate icon path
+    prerequisite = { 
+        focus = construct_civs_breda
+    }
+
+	relative_position_id = construct_civs_breda
+    x = 0
+    y = 1
+    cost = 4
+
+    search_filters = { FOCUS_FILTER_MILITARY }  # Adjust filters as needed
+
+    available_if_capitulated = no
+    completion_reward = {
+	ZEE = {add_state_core = 35
+		}
+	}
+}
+focus = {
+    id = wargoal_on_friesland_focus
+    icon = GFX_goal_generic_war_goal
+    prerequisite = { 
+        focus = gain_core_on_state_35
+    }
+	relative_position_id = gain_core_on_state_35
+    x = 2
+    y = 1
+    cost = 4
+
+    search_filters = { FOCUS_FILTER_MILITARY } # Adjust filter as needed
+
+
+    completion_reward = {
+        create_wargoal = {
+    type = annex_everything
+    target = FRI
+}
+    }
+}
+
+focus = {
+    id = gain_extra_research_slot
+    icon = GFX_goal_generic_scientific_research  # Replace with the appropriate icon path
+    x = 0
+    y = 1
+    cost = 4
+        available = {
+            has_completed_focus = ZEE_research_bonus
+        }
+    prerequisite = { 
+        focus = gain_core_on_state_35
+    }
+
+
+	relative_position_id = gain_core_on_state_35
+    
+    available_if_capitulated = no
+
+    completion_reward = {
+        add_research_slot = 1  # Adds one extra research slot
+
+    }
+}
+
+focus = {
+    id = wargoal_on_holland_focus
+    icon = GFX_goal_generic_war_goal
+    prerequisite = { 
+        focus = gain_core_on_state_35
+    }
+	relative_position_id = gain_core_on_state_35
+    x = -2
+    y = 1
+    cost = 4
+
+    search_filters = { FOCUS_FILTER_MILITARY } # Adjust filter as needed
+
+
+    completion_reward = {
+        create_wargoal = {
+    type = annex_everything
+    target = INS
+}
+    }
+}
+
+focus = {
+    id = gain_core_on_state_7
+    icon = GFX_goal_generic_core_state  # Replace with the appropriate icon path
+    prerequisite = { 
+        focus = wargoal_on_holland_focus
+    }
+    prerequisite = { 
+        focus = wargoal_on_friesland_focus
+    }
+available = {
+    owns_state = 7  # Example: Also check if you own state 35
+}
+	relative_position_id = wargoal_on_holland_focus
+    x = 2
+    y = 1
+    cost = 4
+
+    search_filters = { FOCUS_FILTER_MILITARY }  # Adjust filters as needed
+
+    available_if_capitulated = no
+    completion_reward = {
+	ZEE = {add_state_core = 7
+	}
+		ZEE = {add_state_core = 36}
+	}
+}
+
+	focus = {
+		id = ZEE_partial_mobilisation
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ZEE_civilian_factory }
+
+		relative_position_id = ZEE_civilian_factory 
+		continue_if_invalid = yes
+		x = 0
+		y = 1
+
+		cost = 4
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+				add_ideas = partial_economic_mobilisation
+				
+		}
+	}
+
+	focus = {
+		id = ZEE_free_trade
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ZEE_partial_mobilisation }
+
+		relative_position_id = ZEE_partial_mobilisation
+		continue_if_invalid = yes
+		x = 0
+		y = 1
+
+		cost = 4
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+				add_ideas = free_trade
+				
+		}
+	}
+
+	focus = {
+		id = ZEE_extensive_conscription
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ZEE_stability }
+
+		relative_position_id = ZEE_stability
+		continue_if_invalid = yes
+		x = 0
+		y = 1
+
+		cost = 4
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+				add_ideas = extensive_conscription
+				
+		}
+	}
+		focus = {
+		id = ZEE_civilian_factory2
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = ZEE_free_trade focus = increase_infrastructure_in_all_states  }
+		mutually_exclusive = { focus = ZEE_militairy_factory2 }
+		relative_position_id = ZEE_free_trade
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = industrial_complex
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+			type = industrial_complex
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+
+		focus = {
+		
+		id = ZEE_militairy_factory2
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 2
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = ZEE_free_trade focus = increase_infrastructure_in_all_states  }
+		mutually_exclusive = { focus = ZEE_civilian_factory2 }
+		relative_position_id = ZEE_free_trade
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = industrial_complex
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 1
+			add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+
+	focus = {
+		id = ZEE_expand_steel_production
+
+		prerequisite = { focus = ZEE_civilian_factory2
+						focus = ZEE_militairy_factory2 }
+		icon = GFX_goal_generic_oil_refinery
+		x = 3
+		y = 0
+		relative_position_id = ZEE_extensive_conscription
+		cost = 4
+
+		available_if_capitulated = yes
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			970 = {
+				add_resource = {
+					type = steel
+					amount = 4
+				}
+			}}}
+
+
+focus = {
+    id = ZEE_focus_add_fritz_todt
+    icon = GFX_goal_generic_construct_civ_factory
+    prerequisite = { 
+        focus = ZEE_war_economy
+    }
+	relative_position_id = ZEE_war_economy
+    x = -2
+    y = 1
+    cost = 4
+
+    completion_reward = {
+        activate_advisor = ZEE_fritz_todt
+    }
+}
+
+
+	focus = {
+		id = ZEE_war_economy
+		icon = GFX_goal_generic_construct_civ_factory
+		prerequisite = { focus = ZEE_expand_steel_production focus = ZEE_extensive_conscription}
+
+		relative_position_id = ZEE_expand_steel_production
+		continue_if_invalid = yes
+		x = -2
+		y = 1
+
+		cost = 4
+		ai_will_do = {
+			factor = 1
+		}
+		completion_reward = {
+				add_ideas = war_economy
+				
+		}
+	}
+
+
+
+
+
+
+
+		focus = {
+		
+		id = ZEE_militairy_factory3
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = ZEE_war_economy   }
+
+		relative_position_id = ZEE_war_economy
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = industrial_complex
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+			type = arms_factory
+			level = 2
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+
+		focus = {
+		id = ZEE_civilian_factory3
+		icon = GFX_goal_generic_construct_civ_factory
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = {
+			FOCUS_FILTER_INDUSTRY
+		}
+		prerequisite = { focus = ZEE_focus_add_fritz_todt}
+
+		relative_position_id = ZEE_focus_add_fritz_todt
+		completion_reward = {
+			random_owned_controlled_state = {
+			limit = {
+			free_building_slots = {
+			building = industrial_complex
+			size > 0
+			include_locked = yes
+			}
+			}
+			add_extra_state_shared_building_slots = 3
+			add_building_construction = {
+			type = industrial_complex
+			level = 3
+			instant_build = yes
+			}
+			set_state_flag = REPLACE_ME_WITH_UNIQUE_IDENTIFIER
+			}
+			
+			
+		}
+	}
+	focus = {
+		id = ZEE_expand_oil_production
+		prerequisite = { focus = ZEE_war_economy }
+
+		icon = GFX_goal_generic_oil_refinery
+		x = 2
+		y = 1
+		relative_position_id = ZEE_war_economy
+		cost = 4
+
+		available_if_capitulated = yes
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			970 = {
+				add_resource = {
+					type = oil
+					amount = 8
+				}
+			}}}
+	
+	focus = {
+		id = ZEE_expand_rescources
+		prerequisite = { focus = ZEE_expand_oil_production }
+
+		icon = GFX_goal_generic_oil_refinery
+		x = 0
+		y = 1
+		relative_position_id = ZEE_expand_oil_production
+		cost = 4
+
+		available_if_capitulated = yes
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			970 = {
+				add_resource = {
+					type = steel
+					amount = 8
+				}
+						970 = {
+				add_resource = {
+					type = tungsten
+					amount = 4
+				}
+			}}}}
+
+
+focus = {
+		id = ZEE_remove_debuff
+		icon = GFX_goal_generic_construct_civilian
+		prerequisite = { focus = ZEE_militairy_factory3}
+		x = 0
+		y = 1
+		relative_position_id = ZEE_militairy_factory3
+		cost = 4
+		completion_reward = {
+			remove_ideas = ZEE_partitioned_economy
+		}
+}
+
+
+
+
+
+####NAVY 
+
+	focus = {
+		id = ZEE_cockatoo_island_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 13
+		y = 1
+		prerequisite {focus = ZEE_our_nation}
+		relative_position_id = ZEE_our_nation
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_state = {
+				is_controlled_by = ROOT
+			}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = {  FOCUS_FILTER_INDUSTRY }
+
+		complete_tooltip = {
+			navy_experience = 25
+			random_state = {
+				limit = {
+					has_state_flag = ZEE_cockatoo_island_shipyards_DY
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = Cockatoo_doe
+		}
+
+			
+		completion_reward = {
+			navy_experience = 25
+			random_owned_controlled_state = {
+				prioritize = { 285 }
+				limit = {
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					NOT = { state = 674 }
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = ZEE_cockatoo_island_shipyards_DY
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = Cockatoo_doe
+		}
+	}
+	
+	focus = {
+		id = ZEE_kangaroo_point_shipyards
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 2
+		y = 0
+		relative_position_id = ZEE_cockatoo_island_shipyards
+		prerequisite {focus = ZEE_our_nation}
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+			any_state = {
+
+				is_controlled_by = ROOT
+			}
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = {  FOCUS_FILTER_INDUSTRY }
+
+		complete_tooltip = {
+			navy_experience = 25
+			random_state = {
+				limit = {
+					has_state_flag = ZEE_kangaroo_point_shipyards_DY
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = evans_deakin_co
+		}
+
+		completion_reward = {
+			navy_experience = 25
+			random_owned_controlled_state = {
+				prioritize = { 521 }
+				limit = {
+
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					NOT = { state = 674 }
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = ZEE_kangaroo_point_shipyards_DY
+			}
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = evans_deakin_co
+		}
+	}
+	
+	focus = {
+		id = ZEE_protect_overseas_commerce
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = ZEE_cockatoo_island_shipyards focus = ZEE_kangaroo_point_shipyards }
+		mutually_exclusive = { focus = ZEE_fly_the_jolly_roger }
+		x = 0
+		y = 1
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH  }
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = ZEE_protect_overseas_commerce
+				cost_reduction = 0.25
+				uses = 2
+				category = fleet_in_being_tree
+				category = convoy_defense_tree
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_fly_the_jolly_roger
+		icon = GFX_goal_generic_navy_submarine
+		prerequisite = { focus = ZEE_cockatoo_island_shipyards focus = ZEE_kangaroo_point_shipyards }
+		mutually_exclusive = { focus = ZEE_protect_overseas_commerce }
+		x = 2
+		y = 1
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH  }
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = ZEE_fly_the_jolly_roger
+				cost_reduction = 0.25
+				uses = 2
+				category = submarine_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_scrap_iron_flotilla
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = ZEE_protect_overseas_commerce focus = ZEE_fly_the_jolly_roger }
+		x = 0
+		y = 2
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH  }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_scrap_iron_flotilla
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_royal_australian_submarine_service
+		icon = GFX_goal_generic_wolf_pack
+		prerequisite = { focus = ZEE_protect_overseas_commerce focus = ZEE_fly_the_jolly_roger }
+		x = 2
+		y = 2
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH  }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_royal_australian_submarine_service
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_naval_auxiliary_patrol
+		icon = GFX_goal_generic_fortify_city
+		prerequisite = { focus = ZEE_royal_australian_submarine_service focus = ZEE_scrap_iron_flotilla }
+		x = 1
+		y = 3
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = {  }
+
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 521 }
+				limit = {
+
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+					NOT = { state = 674 }
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = ZEE_kangaroo_point_shipyards_DY
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_cruisers
+		icon = GFX_goal_generic_navy_battleship
+		prerequisite = { focus = ZEE_naval_auxiliary_patrol }
+		x = 0
+		y = 4
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+		search_filters = { FOCUS_FILTER_RESEARCH  }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = ZEE_cruisers
+				bonus = 1.0
+				ahead_reduction = 2
+				uses = 1
+				category = cl_tech
+				category = ca_tech
+			}
+		}
+	}
+
+	focus = {
+		id = ZEE_pacific_area_navy
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = ZEE_naval_auxiliary_patrol }
+		x = 2
+		y = 4
+		relative_position_id = ZEE_cockatoo_island_shipyards
+
+		cost = 4
+
+		ai_will_do = {
+			factor = 1
+		}
+
+		available = {
+
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_RESEARCH  }
+
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = ZEE_pacific_area_navy
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+}
+
+

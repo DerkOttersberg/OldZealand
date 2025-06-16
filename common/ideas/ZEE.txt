@@ -1,0 +1,245 @@
+ideas = {
+	country = {
+		ZEE_autarky_idea = {
+
+			allowed = {
+				original_tag = ZEE
+				always = no
+			}
+
+			allowed_civil_war = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			picture = generic_exploit_mines
+
+			modifier = {
+				production_speed_arms_factory_factor = 0.1
+				production_speed_dockyard_factor = 0.1
+				production_speed_industrial_complex_factor = 0.1
+			}
+		}
+
+
+ZEE_recruitment_drive_idea = {
+    picture = GFX_goal_generic_forceful_treaty
+    allowed = {
+        original_tag = ZEE
+    }
+    visible = {
+        original_tag = ZEE
+    }
+    on_add = {
+        set_country_flag = ZEE_recruitment_drive
+    }
+    modifier = {
+        recruitable_population_factor = 0.1
+    }
+}
+
+ZEE_indoctrination_focus = {
+    picture = generic_pp_unity_bonus
+    allowed = {
+        original_tag = ZEE
+    }
+    visible = {
+        original_tag = ZEE
+    }
+    on_add = {
+        set_country_flag = ZEE_recruitment_drive
+    }
+    modifier = {
+			stability_factor = 0.05
+			weekly_manpower = 400
+    }
+}
+
+
+
+
+
+
+ZEE_equal_rights = {
+    picture = generic_manpower_bonus
+    available = {
+        original_tag = ZEE
+    }
+    allowed = {
+        original_tag = ZEE
+    }
+    modifier = { 
+
+        conscription = 0.1
+        mobilization_speed = 0.25
+		max_planning = -0.05
+		army_defence_factor = -0.05
+		army_attack_factor = -0.05
+    }
+
+    ai_will_do = {
+        factor = 1
+            }
+        }		
+
+		ZEE_consumer_goods = {
+			
+			allowed = {
+				always = yes
+			}
+			
+			removal_cost = -1
+
+			allowed_civil_war = {
+				always = yes
+			}
+
+			picture = generic_goods_red_bonus
+			
+			modifier = {
+				consumer_goods_factor = -0.15
+			}
+		}
+
+
+ZEE_youth = {
+    picture = generic_manpower_bonus
+    available = {
+        original_tag = ZEE
+    }
+    allowed = {
+        original_tag = ZEE
+    }
+    modifier = { 
+
+        conscription = 0.025
+        mobilization_speed = 0.25
+
+    }
+
+    ai_will_do = {
+        factor = 1
+            }
+        }	
+
+ZEE_research_speed1 = {
+    picture = generic_manpower_bonus
+    available = {
+        original_tag = ZEE
+    }
+    allowed = {
+        original_tag = ZEE
+    }
+    modifier = { 
+ 		research_speed_factor = 0.05   
+
+    }
+
+    ai_will_do = {
+        factor = 1
+            }
+        }
+
+
+ZEE_fragmented = {
+        picture = GFX_goal_generic_political_pressure
+        allowed = {
+            original_tag = ZEE
+        }
+        removal_cost = -1
+        modifier = {
+            political_power_gain = -0.50
+            justify_war_goal_time = 1
+        }
+    }
+
+ZEE_partitioned_economy = {
+        picture = GFX_goal_generic_construction
+        allowed = {
+            original_tag = ZEE
+        }
+        removal_cost = -1
+        modifier = {
+            factory_output = -0.15
+            consumer_goods_factor = 0.2
+        }
+    }
+
+ZEE_diplomatic_isolation = {
+        picture = GFX_goal_generic_allies_build_infantry
+        allowed = { original_tag = ZEE }
+        removal_cost = -1
+        modifier = {
+            trade_opinion_factor = -0.5
+
+        }
+    }
+
+    ZEE_internal_divisions = {
+        picture = GFX_goal_generic_dangerous_deal
+        allowed = { original_tag = ZEE }
+        removal_cost = -1
+        modifier = {
+            stability_factor = -0.15
+        }
+    }
+
+    ZEE_militarily_unprepared = {
+        picture = GFX_goal_generic_army_doctrines
+        allowed = { original_tag = ZEE }
+        removal_cost = -1
+        modifier = {
+            division_organization = -0.05
+            army_experience_gain = -0.25
+            recruitable_population_factor = -0.25
+        }
+    }
+
+    ZEE_outdated_industry = {
+        picture = GFX_goal_generic_industry
+        allowed = { original_tag = ZEE }
+        removal_cost = -1
+        modifier = {
+            production_factory_efficiency_gain_factor = -0.15
+			production_factory_max_efficiency_factor = -0.05
+			consumer_goods_factor = 0.10
+			production_speed_industrial_complex_factor = 0.05
+        }
+    }
+
+
+
+    ZEE_maritime_push = {
+        picture = GFX_goal_generic_navy
+        allowed = { original_tag = ZEE }
+        modifier = {
+            naval_speed = 0.05
+            dockyard_output = 0.10
+        }
+    }
+
+    ZEE_claim_oceania = {
+        picture = GFX_goal_generic_occupy_state
+        allowed = { original_tag = ZEE }
+        modifier = {
+            justify_war_goal_time = -0.25
+            war_support = 0.05
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+    }
+
+}

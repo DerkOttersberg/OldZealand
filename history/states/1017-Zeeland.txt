@@ -1,0 +1,26 @@
+state={
+	id=1017
+	name="Middelburg"
+	history={
+		victory_points = { 9431 30 }
+		owner = ZEE
+		add_core_of = ZEE
+
+		buildings = {
+			infrastructure = 2
+			9431 = { naval_base = 10 }
+			arms_factory = 1
+			industrial_complex = 1
+		}
+	}
+
+	provinces={
+		9431 
+	}
+
+	manpower=256000
+	buildings_max_level_factor=3.000
+	state_category=town
+}
+
+local_supplies=14.0 
